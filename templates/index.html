@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<header>
+    <a href="/" class="logo">♬ Groupie Tracker</a>
+    <form class="search-form" method="GET" action="/search">
+        <input class="search-input" type="text" name="q" placeholder="Search artists, members, albums...">
+        <button class="btn" type="submit">Search</button>
+    </form>
+</header>
+
+<main>
+    {{if .}}
+        <p class="section-title">All Artists</p>
+        <div class="grid">
+            {{range .}}
+            <a href="/artist?id={{.ID}}">
+                <div class="card">
+                    <img class="card-image" src="{{.Image}}" alt="{{.Name}}">
+                    <div class="card-body">
+                        <div class="card-name">{{.Name}}</div>
+                        <div class="card-meta">Since {{.CreationDate}}</div>
+                    </div>
+                </div>
+            </a>
+            {{end}}
+        </div>
+    {{else}}
+        <div class="empty">
+            <h2>No artists found</h2>
+            <p>Try a different search term</p>
+        </div>
+    {{end}}
+</main>
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error {{.Status}} — Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<header>
+    <a href="/" class="logo">♬ Groupie Tracker</a>
+</header>
+
+<div class="error-page">
+    <div class="error-code">{{.Status}}</div>
+    <div class="error-message">{{.Message}}</div>
+    <a href="/" class="btn">Go Home</a>
+</div>
+
+</body>
+</html>

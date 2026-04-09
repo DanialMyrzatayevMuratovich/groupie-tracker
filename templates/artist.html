@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Artist.Name}} — Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<header>
+    <a href="/" class="logo">♬ Groupie Tracker</a>
+    <form class="search-form" method="GET" action="/search">
+        <input class="search-input" type="text" name="q" placeholder="Search artists, members, albums...">
+        <button class="btn" type="submit">Search</button>
+    </form>
+</header>
+
+<main>
+    <a href="/" class="back-link">← Back to all artists</a>
+
+    <div class="artist-hero">
+        <img class="artist-image" src="{{.Artist.Image}}" alt="{{.Artist.Name}}">
+        <div class="artist-info">
+            <div class="artist-name">{{.Artist.Name}}</div>
+            <div class="artist-stats">
+                <div class="stat">
+                    <span class="stat-label">Founded</span>
+                    <span class="stat-value">{{.Artist.CreationDate}}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">First Album</span>
+                    <span class="stat-value">{{.Artist.FirstAlbum}}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Members</span>
+                    <span class="stat-value">{{len .Artist.Members}}</span>
+                </div>
+            </div>
+            <div class="members-list">
+                {{range .Artist.Members}}
+                <span class="member-tag">{{.}}</span>
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Tour Dates by Location</h2>
+        {{if .Dates}}
+        <div class="locations-grid">
+            {{range $location, $dates := .Dates}}
+            <div class="location-card">
+                <div class="location-name">{{$location}}</div>
+                <ul class="dates-list">
+                    {{range $dates}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <p class="no-dates">No tour dates available.</p>
+        {{end}}
+    </div>
+</main>
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>
